@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -12,20 +15,65 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <title>스파르타 피디아</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <title>중고동산</title>
 
     <style>
-        * {
-            font-family: 'Gowun Dodum', sans-serif;
+
+        @font-face {
+            font-family: 'NEXONFootballGothicBA1';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicBA1.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
 
-        .mytitle {
-            width: 100%;
-            height: 250px;
+        /*css reset*/
+        a {color: #000; text-decoration: none;}
+        ul, li, ol {list-style: none;}
 
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://movie-phinf.pstatic.net/20210715_95/1626338192428gTnJl_JPEG/movie_image.jpg');
+        * {
+            font-family: 'NEXONFootballGothicBA1';
+        }
+        body {
+            background: transparent;
+            position: relative;
+            z-index: 90;
+        }
+        header {
+            position: relative;
+            z-index: 999;
+            background: #33dac6;
+            color: #fff;
+        }
+        header.move {position: absolute; width: 100%; height: 100%; left: 0; top: 0;}
+        header .head {
+            width: 1500px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20px;
+            position: relative;
+        }
+        header h1 {text-align: center; margin: 30px 0; font-size: 50px; font-weight: bold;}
+        header .search {border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #fff;}
+        header input {border: none; outline: none; background: transparent;}
+        header input::placeholder {color: #fff;}
+        header .member {position: absolute; right: 0; top: 10px;}
+        header .member ul {display: flex; align-items: center;}
+        header .member ul > li a {transition: all .3s; color: #fff; font-size: 15px; font-weight: 500;}
+        header .member ul > li:first-child {margin-right: 10px;}
+        header .member ul > li a:hover {color: #000;}
+        footer {position: relative;}
+        footer .foot {display: flex; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); align-items: center;}
+        footer .foot i {position: relative; top: -1px; margin-right: 15px;}
+        footer .foot p {margin: 0; font-size: 18px;}
+        .mytitle {
+            background-color: green;
+
+            height: 250px;
+            width: 100%;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://movie-phinf.pstatic.net/20210715_95/1626338192428gTnJl_JPEG/movie_image.jpg");
             background-position: center;
             background-size: cover;
 
@@ -33,10 +81,9 @@
 
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
-
         .mytitle > button {
             width: 200px;
             height: 50px;
@@ -45,152 +92,154 @@
             color: white;
 
             border-radius: 50px;
+
             border: 1px solid white;
 
             margin-top: 10px;
         }
-
         .mytitle > button:hover {
             border: 2px solid white;
         }
-
         .mycomment {
             color: gray;
         }
-
-        .mycards {
-            margin: 20px auto 0px auto;
-            width: 95%;
+        .wrap {
             max-width: 1200px;
-        }
-
-        .mypost {
             width: 95%;
-            max-width: 500px;
             margin: 20px auto 0px auto;
-            padding: 20px;
-            box-shadow: 0px 0px 3px 0px gray;
-
-            display: none;
+            margin: 80px auto;
         }
+        .mypost {
+            max-width: 500px;
+            width: 95%;
 
-        .mybtns {
+            margin: 20px auto 0px auto;
+
+            box-shadow: 0px 0px 3px 0px gray;
+            padding: 20px;
+        }
+        .mybtn {
             display: flex;
             flex-direction: row;
-            align-items: center;
             justify-content: center;
+            align-items: center;
 
-            margin-top: 20px;
+            margin-top: 10px;
         }
-
-        .mybtns > button {
+        .mybtn > button {
             margin-right: 10px;
         }
     </style>
     <script>
-        $(document).ready(function () {
-            listing();
-        });
 
-        function listing() {
-            $.ajax({
-                type: 'GET',
-                url: '/movie',
-                data: {},
-                success: function (response) {
-                    let rows = response['movies']
-                    for (let i = 0; i < rows.length; i++) {
-                        let comment = rows[i]['comment']
-                        let title = rows[i]['title']
-                        let desc = rows[i]['desc']
-                        let image = rows[i]['image']
-                        let star = rows[i]['star']
-
-                        let star_image = '⭐'.repeat(star)
-
-                        let temp_html = `        <div class="col">
-                                                    <div class="card h-100">
-                                                        <img src="${image}"
-                                                             class="card-img-top">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">${title}</h5>
-                                                            <p class="card-text">${desc}</p>
-                                                            <p>${star_image}</p>
-                                                            <p class="mycomment">${comment}</p>
-                                                        </div>
-                                                  </div>`
-                        $('#cards-box').append(temp_html)
-                    }
-                }
-            })
-        }
-
-        function posting() {
-            let url = $('#url').val()
-            let star = $('#star').val()
-            let comment = $('#comment').val()
-
-            $.ajax({
-                type: 'POST',
-                url: '/movie',
-                data: {url_give: url, star_give: star, comment_give: comment},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            });
-        }
-
-        function open_box() {
-            $('#post-box').show()
-        }
-
-        function close_box() {
-            $('#post-box').hide()
-        }
     </script>
 </head>
 
 <body>
-<div class="mytitle">
-    <h1>내 생애 최고의 영화들</h1>
-    <button onclick="open_box()">영화 기록하기</button>
-    <div class="search-box">
-        <form action="." method="post">
-          <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요">
-          <button class="search-btn" type="submit">검색</button>
-        </form>
-      </div>
-</div>
-<div class="mypost" id="post-box">
-    <div class="form-floating mb-3">
-        <input id="url" type="email" class="form-control" placeholder="name@example.com">
-        <label>영화URL</label>
+    <header id="header">
+        <div class="head">
+            <div class="logo">
+                <h1>중고동산</h1>
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="검색...">
+                </div>
+            </div>
+            <div class="member">
+                <ul>
+                    <li>
+                        <a href="#n">로그인</a>
+                    </li>
+                    <li>
+                        <a href="#n">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- <div class="mypost" id="post-box">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="url" placeholder="name@example.com">
+            <label for="floatingInput">영화URL</label>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="inputGroupSelect01">
+                <option selected>--선택하기--</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">코멘트</label>
+        </div>
+        <div class="mybtn">
+            <button type="button" class="btn btn-dark">기록하기</button>
+            <button type="button" class="btn btn-outline-dark">닫기</button>
+        </div>
+    </div> -->
+    <div class="wrap">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
+                        <p>⭐⭐⭐</p>
+                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
+                        <p>⭐⭐⭐</p>
+                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
+                        <p>⭐⭐⭐</p>
+                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                         class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
+                        <p>⭐⭐⭐</p>
+                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">별점</label>
-        <select class="form-select" id="star">
-            <option selected>-- 선택하기 --</option>
-            <option value="1">⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-        </select>
-    </div>
-    <div class="form-floating">
-        <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-        <label for="floatingTextarea2">코멘트</label>
-    </div>
-    <div class="mybtns">
-        <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-    </div>
-</div>
-<div class="mycards">
-    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-    </div>
-</div>
+    <footer style="height: 100px; background: #33dac6;">
+        <div class="foot">
+            <i class="fa-regular fa-copyright"></i>
+            <p>2022, 중고동산 by Team 6, ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
