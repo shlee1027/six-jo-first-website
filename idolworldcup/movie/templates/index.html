@@ -117,6 +117,7 @@
 
             box-shadow: 0px 0px 3px 0px gray;
             padding: 20px;
+
         }
         .mybtn {
             display: flex;
@@ -131,12 +132,12 @@
         }
 
         .sidebox {
-            background-color: transparent;
+            background-color: mediumturquoise;
             width: 200px;
             margin: 0 auto;
             padding: 10px 10px;
             position: fixed;
-            bottom: 0px;
+            bottom: 20px;
             color: azure;
             font-size: large;
             font-weight: 400;
@@ -159,7 +160,7 @@
                 url: '/products',
                 data: {},
                 success: function (response) {
-                    let rows = response['list']
+                    let rows = response['products']
                     for (i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let productName = rows[i]['productName']
@@ -236,27 +237,27 @@
             </div>
         </div>
     </header>
-     <div class="mypost" id="post-box">
-    <div class="form-floating mb-3">
-        <input id="name" type="text" class="form-control" placeholder="name@example.com">
-        <label>작성자</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input id="product" type="text" class="form-control" placeholder="name@example.com">
-        <label>상품명</label>
-    </div>
-     <div class="form-floating mb-3">
-        <input id="desc" type="text" class="form-control" placeholder="name@example.com">
-        <label>상품 설명</label>
-    </div>
-    <div class="form-floating">
-       <input id="price" type="text" class="form-control" placeholder="name@example.com">
-        <label>상품 가격</label>
-    </div>
-    <div class="mybtn">
-        <button onclick="posting()" type="button" class="btn btn-dark">등록하기</button>
-        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-    </div>
+    <div class="mypost" id="post-box">
+        <div class="form-floating mb-3">
+            <input id="name" type="text" class="form-control" placeholder="name@example.com">
+            <label>작성자</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="product" type="text" class="form-control" placeholder="name@example.com">
+            <label>상품명</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="desc" type="text" class="form-control" placeholder="name@example.com">
+            <label>상품 설명</label>
+        </div>
+        <div class="form-floating">
+            <input id="price" type="text" class="form-control" placeholder="name@example.com">
+            <label>상품 가격</label>
+        </div>
+        <div class="mybtn">
+            <button onclick="posting()" type="button" class="btn btn-dark">등록하기</button>
+            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+        </div>
     </div>
     <div class="wrap" id="cards-box">
         <div class="row row-cols-1 row-cols-md-4 g-4">
