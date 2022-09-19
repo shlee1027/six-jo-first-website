@@ -129,9 +129,88 @@
         .mybtn > button {
             margin-right: 10px;
         }
+
+        .sidebox {
+            background-color: transparent;
+            width: 200px;
+            margin: 0 auto;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0px;
+            color: azure;
+            font-size: large;
+            font-weight: 400;
+            border-radius: 25px;
+            border: 2px mediumturquoise;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
     </style>
     <script>
+     $(document).ready(function () {
+            listing();
+        });
 
+         function listing() {
+             ${'#cards-box'}.empty()
+            $.ajax({
+                type: 'GET',
+                url: '/products',
+                data: {},
+                success: function (response) {
+                    let rows = response['list']
+                    for (i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let productName = rows[i]['productName']
+                        let img = rows[i]['img']
+                        let desc = rows[i]['desc']
+                        let price = rows[i]['price']
+
+                        let temp_html = `<div class="col">
+                                        <div class="card h-100">
+                                            <img src="${img}"
+                                                 class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${productName}</h5>
+                                                <p class="card-text">${desc}</p>
+                                                <p>${name}</p>
+                                                <p class="mycomment">${price}</p>
+                                            </div>
+                                        </div>
+                                    </div>`
+
+                        $('#cards-box').append(temp_html)
+                    }
+                }
+            })
+        }
+        function posting() {
+            let name = $('#name').val()
+            let productName = $('#productName').val()
+            let img = $('#img').val()
+            let desc = $('#desc').val()
+            let price = $('#price').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/products',
+                data: {name_give: name, productName_give:productName, img_give:img, desc_give:desc, price_give:price},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        function open_box() {
+            $('#post-box').show()
+        }
+
+        function close_box() {
+            $('#post-box').hide()
+
+        }
     </script>
 </head>
 
@@ -157,32 +236,29 @@
             </div>
         </div>
     </header>
-    <!-- <div class="mypost" id="post-box">
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="url" placeholder="name@example.com">
-            <label for="floatingInput">영화URL</label>
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">별점</label>
-            <select class="form-select" id="inputGroupSelect01">
-                <option selected>--선택하기--</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
-        </div>
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">코멘트</label>
-        </div>
-        <div class="mybtn">
-            <button type="button" class="btn btn-dark">기록하기</button>
-            <button type="button" class="btn btn-outline-dark">닫기</button>
-        </div>
-    </div> -->
-    <div class="wrap">
+     <div class="mypost" id="post-box">
+    <div class="form-floating mb-3">
+        <input id="name" type="text" class="form-control" placeholder="name@example.com">
+        <label>작성자</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input id="product" type="text" class="form-control" placeholder="name@example.com">
+        <label>상품명</label>
+    </div>
+     <div class="form-floating mb-3">
+        <input id="desc" type="text" class="form-control" placeholder="name@example.com">
+        <label>상품 설명</label>
+    </div>
+    <div class="form-floating">
+       <input id="price" type="text" class="form-control" placeholder="name@example.com">
+        <label>상품 가격</label>
+    </div>
+    <div class="mybtn">
+        <button onclick="posting()" type="button" class="btn btn-dark">등록하기</button>
+        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+    </div>
+    </div>
+    <div class="wrap" id="cards-box">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col">
                 <div class="card">
@@ -234,6 +310,10 @@
             </div>
         </div>
     </div>
+    <div onclick="open_box()" class="sidebox" id="sidebox">
+    물품 추가하기
+    </div>
+
     <footer style="height: 100px; background: #33dac6;">
         <div class="foot">
             <i class="fa-regular fa-copyright"></i>
