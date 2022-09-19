@@ -18,12 +18,20 @@
     <title>중고동산</title>
 
     <style>
+
+        @font-face {
+            font-family: 'NEXONFootballGothicBA1';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicBA1.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         /*css reset*/
         a {color: #000; text-decoration: none;}
         ul, li, ol {list-style: none;}
 
         * {
-            font-family: 'Gowun Dodum', sans-serif;
+            font-family: 'NEXONFootballGothicBA1';
         }
         body {
             background: transparent;
@@ -36,6 +44,7 @@
             background: #33dac6;
             color: #fff;
         }
+        header.move {position: absolute; width: 100%; height: 100%; left: 0; top: 0;}
         header .head {
             width: 1500px;
             margin: 0 auto;
@@ -48,12 +57,16 @@
         header h1 {text-align: center; margin: 30px 0; font-size: 50px; font-weight: bold;}
         header .search {border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #fff;}
         header input {border: none; outline: none; background: transparent;}
-        header input::placeholder {color: #000;}
-        header .member {position: absolute; right: 0; bottom: 0;}
+        header input::placeholder {color: #fff;}
+        header .member {position: absolute; right: 0; top: 10px;}
         header .member ul {display: flex; align-items: center;}
-        header .member ul > li a {transition: all .3s; color: #fff; font-size: 20px; font-weight: bold;}
+        header .member ul > li a {transition: all .3s; color: #fff; font-size: 15px; font-weight: 500;}
         header .member ul > li:first-child {margin-right: 10px;}
         header .member ul > li a:hover {color: #000;}
+        footer {position: relative;}
+        footer .foot {display: flex; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); align-items: center;}
+        footer .foot i {position: relative; top: -1px; margin-right: 15px;}
+        footer .foot p {margin: 0; font-size: 18px;}
         .mytitle {
             background-color: green;
 
@@ -94,6 +107,7 @@
             max-width: 1200px;
             width: 95%;
             margin: 20px auto 0px auto;
+            margin: 80px auto;
         }
         .mypost {
             max-width: 500px;
@@ -122,10 +136,10 @@
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <div class="head">
             <div class="logo">
-                <h1>중고상점</h1>
+                <h1>중고동산</h1>
                 <div class="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" placeholder="검색...">
@@ -220,6 +234,12 @@
             </div>
         </div>
     </div>
+    <footer style="height: 100px; background: #33dac6;">
+        <div class="foot">
+            <i class="fa-regular fa-copyright"></i>
+            <p>2022, 중고동산 by Team 6, ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
