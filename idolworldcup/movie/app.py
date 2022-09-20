@@ -15,6 +15,11 @@ from werkzeug.utils import secure_filename
 def home():
     return render_template('index.html')
 
+@app.route('/login')
+def login():
+    return render_template('index4.html')
+
+
 @app.route("/products", methods=["POST"])
 def list_post():
     name_receive = request.form['name_give']
@@ -43,10 +48,10 @@ def list_get():
 @app.route('/fileupload', methods=['POST'])
 def file_upload():
     file = request.files['file']
-
+    image_path = './new'
     filename = secure_filename(file.filename)
-    # os.makedirs(image_path, exists_ok=True)
-    # file.save(os.path.join(image_path, filename))
+    os.makedirs(image_path, exists_ok=True)
+    file.save(os.path.join(image_path, filename))
 
     return
 
