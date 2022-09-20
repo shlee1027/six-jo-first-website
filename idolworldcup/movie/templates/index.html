@@ -154,7 +154,8 @@
         });
 
          function listing() {
-            $.ajax({
+            let img = "url(https://m.thetem.co.kr/web/product/medium/201907/a1da0b72afb4e09718299a79a1df67a9.jpg)"
+             $.ajax({
                 type: 'GET',
                 url: '/products',
                 data: {},
@@ -162,17 +163,17 @@
                     let rows = response['products']
                     for (i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
-                        let productName = rows[i]['productName']
-                        let img = rows[i]['img']
+                        let product = rows[i]['product']
+
                         let desc = rows[i]['desc']
                         let price = rows[i]['price']
 
                         let temp_html = `<div class="col">
                                         <div class="card h-100">
-                                            <img src="${img}"
+                                            <img src=${img}
                                                  class="card-img-top">
                                             <div class="card-body">
-                                                <h5 class="card-title">${productName}</h5>
+                                                <h5 class="card-title">${product}</h5>
                                                 <p class="card-text">${desc}</p>
                                                 <p>${name}</p>
                                                 <p class="mycomment">${price}</p>
@@ -187,15 +188,15 @@
         }
         function posting() {
             let name = $('#name').val()
-            let productName = $('#productName').val()
-            let img = $('#img').val()
+            let product = $('#product').val()
+
             let desc = $('#desc').val()
             let price = $('#price').val()
 
             $.ajax({
                 type: 'POST',
                 url: '/products',
-                data: {name_give: name, productName_give:productName, img_give:img, desc_give:desc, price_give:price},
+                data: {name_give: name, product_give: product, desc_give:desc, price_give:price},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()

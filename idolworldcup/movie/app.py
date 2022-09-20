@@ -15,15 +15,15 @@ def home():
 @app.route("/products", methods=["POST"])
 def list_post():
     name_receive = request.form['name_give']
-    productName_receive = request.form['productName_give']
-    img_receive = request.form['img_give']
+    product_receive = request.form['product_give']
+
     desc_receive = request.form['desc_give']
     price_receive = request.form['price_give']
 
     doc = {
         'name': name_receive,
-        'productName': productName_receive,
-        'img': img_receive,
+        'product': product_receive,
+
         'desc': desc_receive,
         'price': price_receive
     }
