@@ -6,10 +6,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
-<<<<<<< HEAD
-    <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
-=======
->>>>>>> 6a0612516bdb9095ee1ec5078c70d045cbace3ca
+    <option name="TEMPLATE_CONFIGURATION" value="Chameleon" />
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/idolworldcup/movie/templates" />
