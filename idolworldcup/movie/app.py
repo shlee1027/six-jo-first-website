@@ -33,14 +33,6 @@ def list_post():
     db.products.insert_one(doc)
 
     return jsonify({'msg': '물건 등록 완료!'})
-<<<<<<< HEAD
-
-@app.route("/products", methods=["GET"])
-def list_get():
-    products_list = list(db.products.find({}, {'_id': False}))
-    return jsonify({'products': products_list})
-
-=======
 
 @app.route("/products", methods=["GET"])
 def list_get():
@@ -53,11 +45,10 @@ def file_upload():
     file = request.files['file']
 
     filename = secure_filename(file.filename)
-    os.makedirs(image_path, exists_ok=True)
-    file.save(os.path.join(image_path, filename))
+    # os.makedirs(image_path, exists_ok=True)
+    # file.save(os.path.join(image_path, filename))
 
     return
->>>>>>> 6a0612516bdb9095ee1ec5078c70d045cbace3ca
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
