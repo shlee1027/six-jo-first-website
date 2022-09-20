@@ -117,6 +117,11 @@
 
             box-shadow: 0px 0px 3px 0px gray;
             padding: 20px;
+<<<<<<< HEAD
+=======
+            display: none;
+>>>>>>> 6a0612516bdb9095ee1ec5078c70d045cbace3ca
+
         }
         .mybtn {
             display: flex;
@@ -129,9 +134,176 @@
         .mybtn > button {
             margin-right: 10px;
         }
+
+        .sidebox {
+            background-color: mediumturquoise;
+            width: 200px;
+            margin: 0 auto;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 20px;
+            color: azure;
+            font-size: large;
+            font-weight: 400;
+            border-radius: 25px;
+            border: 2px mediumturquoise;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+<<<<<<< HEAD
+=======
+        .image_input{
+            margin-top:5px;
+            margin-bottom: 15px;
+        }
+>>>>>>> 6a0612516bdb9095ee1ec5078c70d045cbace3ca
     </style>
     <script>
+     $(document).ready(function () {
+            listing();
+        });
+<<<<<<< HEAD
 
+         function listing() {
+            let img = "url(https://m.thetem.co.kr/web/product/medium/201907/a1da0b72afb4e09718299a79a1df67a9.jpg)"
+             $.ajax({
+                type: 'GET',
+                url: '/products',
+                data: {},
+                success: function (response) {
+                    let rows = response['products']
+                    for (i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let product = rows[i]['product']
+
+                        let desc = rows[i]['desc']
+                        let price = rows[i]['price']
+
+                        let temp_html = `<div class="col">
+                                        <div class="card h-100">
+                                            <img src=${img}
+                                                 class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${product}</h5>
+                                                <p class="card-text">${desc}</p>
+                                                <p>${name}</p>
+                                                <p class="mycomment">${price}</p>
+                                            </div>
+                                        </div>
+                                    </div>`
+
+                        $('#cards-box').append(temp_html)
+                    }
+                }
+            })
+        }
+        function posting() {
+            let name = $('#name').val()
+            let product = $('#product').val()
+
+            let desc = $('#desc').val()
+            let price = $('#price').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/products',
+                data: {name_give: name, product_give: product, desc_give:desc, price_give:price},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        function open_box() {
+            $('#post-box').show()
+        }
+
+        function close_box() {
+            $('#post-box').hide()
+
+        }
+        function text() {
+             $('#text').show()
+            alert(response['msg'])
+
+        }
+
+     let k;
+     let temp;
+     $(document).ready(function () {
+         $("#search_in").keyup(function () {
+             k = $(this).val();
+             temp = $(".search:contains('" + k + "')");
+         })
+         $('#search_btn').click(function () {
+             const cardContainer = $('#cards-box')
+             alert("검색");
+         });
+     })
+=======
+>>>>>>> 6a0612516bdb9095ee1ec5078c70d045cbace3ca
+
+         function listing() {
+            let img = "url(https://m.thetem.co.kr/web/product/medium/201907/a1da0b72afb4e09718299a79a1df67a9.jpg)"
+             $.ajax({
+                type: 'GET',
+                url: '/products',
+                data: {},
+                success: function (response) {
+                    let rows = response['products']
+                    for (i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let product = rows[i]['product']
+
+                        let desc = rows[i]['desc']
+                        let price = rows[i]['price']
+
+                        let temp_html = `<div class="col">
+                                        <div class="card h-100">
+                                            <img src=${img}
+                                                 class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${product}</h5>
+                                                <p class="card-text">${desc}</p>
+                                                <p>${name}</p>
+                                                <p class="mycomment">${price}</p>
+                                            </div>
+                                        </div>
+                                    </div>`
+
+                        $('#cards-box').append(temp_html)
+                    }
+                }
+            })
+        }
+        function posting() {
+            let name = $('#name').val()
+            let product = $('#product').val()
+
+            let desc = $('#desc').val()
+            let price = $('#price').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/products',
+                data: {name_give: name, product_give: product, desc_give:desc, price_give:price},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        function open_box() {
+            $('#post-box').show()
+        }
+
+        function close_box() {
+            $('#post-box').hide()
+
+        }
     </script>
 </head>
 
@@ -142,7 +314,12 @@
                 <h1>중고동산</h1>
                 <div class="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="검색...">
+                    <form action="javascript:;" class="srch_frm">
+                        <fieldset>
+                            <input type="text" id='search_in' autocomplete="off" onkeyup="filter()" placeholder="검색하세요">
+                            <button id='search_btn'>검색</button>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
             <div class="member">
@@ -157,32 +334,38 @@
             </div>
         </div>
     </header>
-    <!-- <div class="mypost" id="post-box">
+    <div class="mypost" id="post-box">
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="url" placeholder="name@example.com">
-            <label for="floatingInput">영화URL</label>
+            <input id="name" type="text" class="form-control" placeholder="name@example.com">
+            <label>작성자</label>
         </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">별점</label>
-            <select class="form-select" id="inputGroupSelect01">
-                <option selected>--선택하기--</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
+        <div class="form-floating mb-3">
+            <input id="product" type="text" class="form-control" placeholder="name@example.com">
+            <label>상품명</label>
+        </div>
+<<<<<<< HEAD
+=======
+        <div>
+            <form action = "http://localhost:5000/fileupload" method = "POST"
+          enctype = "multipart/form-data">
+            <input class="image_input" type="file">
+        </div>
+>>>>>>> 6a0612516bdb9095ee1ec5078c70d045cbace3ca
+        <div class="form-floating mb-3">
+            <input id="desc" type="text" class="form-control" placeholder="name@example.com">
+            <label>상품 설명</label>
         </div>
         <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">코멘트</label>
+            <input id="price" type="text" class="form-control" placeholder="name@example.com">
+            <label>상품 가격</label>
         </div>
         <div class="mybtn">
-            <button type="button" class="btn btn-dark">기록하기</button>
-            <button type="button" class="btn btn-outline-dark">닫기</button>
+            <button onclick="posting()" type="button" class="btn btn-dark">등록하기</button>
+            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+<<<<<<< HEAD
         </div>
-    </div> -->
-    <div class="wrap">
+    </div>
+    <div class="wrap" id="cards-box">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col">
                 <div class="card">
@@ -234,6 +417,19 @@
             </div>
         </div>
     </div>
+=======
+        </div>
+    </div>
+    <div class="wrap" id="cards-box">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+
+        </div>
+    </div>
+>>>>>>> 6a0612516bdb9095ee1ec5078c70d045cbace3ca
+    <div onclick="open_box()" class="sidebox" id="sidebox">
+    물품 추가하기
+    </div>
+
     <footer style="height: 100px; background: #33dac6;">
         <div class="foot">
             <i class="fa-regular fa-copyright"></i>
