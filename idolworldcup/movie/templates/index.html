@@ -15,139 +15,11 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href = "../static/style.css">
+
     <title>중고동산</title>
 
-    <style>
 
-        @font-face {
-            font-family: 'NEXONFootballGothicBA1';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicBA1.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /*css reset*/
-        a {color: #000; text-decoration: none;}
-        ul, li, ol {list-style: none;}
-
-        * {
-            font-family: 'NEXONFootballGothicBA1';
-        }
-        body {
-            background: transparent;
-            position: relative;
-            z-index: 90;
-        }
-        header {
-            position: relative;
-            z-index: 999;
-            background: #33dac6;
-            color: #fff;
-        }
-        header.move {position: absolute; width: 100%; height: 100%; left: 0; top: 0;}
-        header .head {
-            width: 1500px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-bottom: 20px;
-            position: relative;
-        }
-        header h1 {text-align: center; margin: 30px 0; font-size: 50px; font-weight: bold;}
-        header .search {border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #fff;}
-        header input {border: none; outline: none; background: transparent;}
-        header input::placeholder {color: #fff;}
-        header .member {position: absolute; right: 0; top: 10px;}
-        header .member ul {display: flex; align-items: center;}
-        header .member ul > li a {transition: all .3s; color: #fff; font-size: 15px; font-weight: 500;}
-        header .member ul > li:first-child {margin-right: 10px;}
-        header .member ul > li a:hover {color: #000;}
-        footer {position: relative;}
-        footer .foot {display: flex; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); align-items: center;}
-        footer .foot i {position: relative; top: -1px; margin-right: 15px;}
-        footer .foot p {margin: 0; font-size: 18px;}
-        .mytitle {
-            background-color: green;
-
-            height: 250px;
-            width: 100%;
-
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://movie-phinf.pstatic.net/20210715_95/1626338192428gTnJl_JPEG/movie_image.jpg");
-            background-position: center;
-            background-size: cover;
-
-            color: white;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .mytitle > button {
-            width: 200px;
-            height: 50px;
-
-            background-color: transparent;
-            color: white;
-
-            border-radius: 50px;
-
-            border: 1px solid white;
-
-            margin-top: 10px;
-        }
-        .mytitle > button:hover {
-            border: 2px solid white;
-        }
-        .mycomment {
-            color: gray;
-        }
-        .wrap {
-            max-width: 1200px;
-            width: 95%;
-            margin: 20px auto 0px auto;
-            margin: 80px auto;
-        }
-        .mypost {
-            max-width: 500px;
-            width: 95%;
-
-            margin: 20px auto 0px auto;
-
-            box-shadow: 0px 0px 3px 0px gray;
-            padding: 20px;
-
-        }
-        .mybtn {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-            margin-top: 10px;
-        }
-        .mybtn > button {
-            margin-right: 10px;
-        }
-
-        .sidebox {
-            background-color: mediumturquoise;
-            width: 200px;
-            margin: 0 auto;
-            padding: 10px 10px;
-            position: fixed;
-            bottom: 20px;
-            color: azure;
-            font-size: large;
-            font-weight: 400;
-            border-radius: 25px;
-            border: 2px mediumturquoise;
-            left: 0;
-            right: 0;
-            text-align: center;
-        }
-    </style>
     <script>
      $(document).ready(function () {
             listing();
@@ -246,6 +118,11 @@
             <input id="product" type="text" class="form-control" placeholder="name@example.com">
             <label>상품명</label>
         </div>
+        <div>
+            <form action = "http://localhost:5000/fileupload" method = "POST"
+          enctype = "multipart/form-data"/>
+            <input class="image_input" type="file">
+        </div>
         <div class="form-floating mb-3">
             <input id="desc" type="text" class="form-control" placeholder="name@example.com">
             <label>상품 설명</label>
@@ -261,54 +138,7 @@
     </div>
     <div class="wrap" id="cards-box">
         <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
     <div onclick="open_box()" class="sidebox" id="sidebox">
