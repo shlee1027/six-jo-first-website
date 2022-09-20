@@ -117,6 +117,7 @@
 
             box-shadow: 0px 0px 3px 0px gray;
             padding: 20px;
+            display: none;
 
         }
         .mybtn {
@@ -146,6 +147,10 @@
             left: 0;
             right: 0;
             text-align: center;
+        }
+        .image_input{
+            margin-top:5px;
+            margin-bottom: 15px;
         }
     </style>
     <script>
@@ -246,6 +251,11 @@
             <input id="product" type="text" class="form-control" placeholder="name@example.com">
             <label>상품명</label>
         </div>
+        <div>
+            <form action = "http://localhost:5000/fileupload" method = "POST"
+          enctype = "multipart/form-data">
+            <input class="image_input" type="file">
+        </div>
         <div class="form-floating mb-3">
             <input id="desc" type="text" class="form-control" placeholder="name@example.com">
             <label>상품 설명</label>
@@ -261,54 +271,7 @@
     </div>
     <div class="wrap" id="cards-box">
         <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">여기에 코멘트가 들어갑니다.</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
     <div onclick="open_box()" class="sidebox" id="sidebox">
