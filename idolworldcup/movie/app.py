@@ -45,8 +45,8 @@ def file_upload():
     file = request.files['file']
 
     filename = secure_filename(file.filename)
-    os.makedirs(image_path, exists_ok=True)
-    file.save(os.path.join(image_path, filename))
+    # os.makedirs(image_path, exists_ok=True)
+    # file.save(os.path.join(image_path, filename))
 
     return
 
