@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+          integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -27,24 +29,40 @@
         }
 
         /*css reset*/
-        a {color: #000; text-decoration: none;}
-        ul, li, ol {list-style: none;}
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        ul, li, ol {
+            list-style: none;
+        }
 
         * {
             font-family: 'NEXONFootballGothicBA1';
         }
+
         body {
             background: transparent;
             position: relative;
             z-index: 90;
         }
+
         header {
             position: relative;
             z-index: 999;
             background: #33dac6;
             color: #fff;
         }
-        header.move {position: absolute; width: 100%; height: 100%; left: 0; top: 0;}
+
+        header.move {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
         header .head {
             width: 1500px;
             margin: 0 auto;
@@ -54,19 +72,82 @@
             padding-bottom: 20px;
             position: relative;
         }
-        header h1 {text-align: center; margin: 30px 0; font-size: 50px; font-weight: bold;}
-        header .search {border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #fff;}
-        header input {border: none; outline: none; background: transparent;}
-        header input::placeholder {color: #fff;}
-        header .member {position: absolute; right: 0; top: 10px;}
-        header .member ul {display: flex; align-items: center;}
-        header .member ul > li a {transition: all .3s; color: #fff; font-size: 15px; font-weight: 500;}
-        header .member ul > li:first-child {margin-right: 10px;}
-        header .member ul > li a:hover {color: #000;}
-        footer {position: relative;}
-        footer .foot {display: flex; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); align-items: center;}
-        footer .foot i {position: relative; top: -1px; margin-right: 15px;}
-        footer .foot p {margin: 0; font-size: 18px;}
+
+        header h1 {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        header .search {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid #fff;
+        }
+
+        header input {
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        header input::placeholder {
+            color: #fff;
+        }
+
+        header .member {
+            position: absolute;
+            right: 0;
+            top: 10px;
+        }
+
+        header .member ul {
+            display: flex;
+            align-items: center;
+        }
+
+        header .member ul > li a {
+            transition: all .3s;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        header .member ul > li:first-child {
+            margin-right: 10px;
+        }
+
+        header .member ul > li a:hover {
+            color: #000;
+        }
+
+        footer {
+            position: relative;
+        }
+
+        footer .foot {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            align-items: center;
+        }
+
+        footer .foot i {
+            position: relative;
+            top: -1px;
+            margin-right: 15px;
+        }
+
+        footer .foot p {
+            margin: 0;
+            font-size: 18px;
+        }
+
         .wrap {
             max-width: 1200px;
             width: 95%;
@@ -74,73 +155,164 @@
             margin: 80px auto;
         }
 
-        .product_more {padding-left: 0; margin-top: 35px;}
-        .product {display: flex; flex-direction: column; align-items: center; justify-content: center;}
-        .reply_action {display: flex; align-items: center;}
-        .reply_action input {width: 70%; margin-right: 8px;}
-        .reply_action button {border: none; background: transparent; transition: all .3s;}
-        .reply_action button:hover {color: #33dac6;}
+        .comment_list {
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 2px solid #000;
+        }
+
+        .card
+            {border-radius: 0!important;
+               border: none;
+               border-bottom: 1px solid #000;
+                margin-bottom: 20px;
+            }
+
+        .card-body.pad {
+            padding: 10px !important;
+        }
+
+        .product_more {
+            padding-left: 0;
+            margin-top: 35px;
+        }
+
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product_exp {
+            width: 100%;
+        }
+
+        .reply_action {
+            display: flex;
+            align-items: center;
+        }
+
+        .reply_action input {
+            width: 70%;
+            margin-right: 8px;
+        }
+
+        .reply_action button {
+            border: none;
+            background: transparent;
+            transition: all .3s;
+        }
+
+        .reply_action button:hover {
+            color: #33dac6;
+        }
     </style>
     <script>
+        $(document).ready(function () {
+            comment_show()
+        })
 
+        function postComment() {
+            let comment = $('#comment').val()
+
+            if (comment == '') {
+                alert('문의사항을 입력해주세요')
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/question',
+                    data: {
+                        comment_give: comment,
+
+                    },
+                    success: function (response) {
+                        alert(response['msg'])
+                        window.location.reload()
+                    }
+                });
+            }
+        }
+
+        function comment_show() {
+            $.ajax({
+                type: 'GET',
+                url: '/question',
+                data: {},
+                success: function (response) {
+                    let rows = response['replys']
+                    for (let i = 0; i < rows.length; i++) {
+                        let comment = rows[i]['comment']
+                        let temp_html = `<div class="card">
+                                            <div class="card-body pad">
+                                                <blockquote class="blockquote mb-0">
+                                                    <p>${comment}</p>
+                                                </blockquote>
+                                            </div>
+                                        </div>`
+                        $('.comment_list').append(temp_html)
+                    }
+                }
+            })
+        }
     </script>
 </head>
 
 <body>
-    <header id="header">
-        <div class="head">
-            <div class="logo">
-                <h1>중고동산</h1>
-                <div class="search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="검색...">
-                </div>
-            </div>
-            <div class="member">
-                <ul>
-                    <li>
-                        <a href="#n">로그인</a>
-                    </li>
-                    <li>
-                        <a href="#n">회원가입</a>
-                    </li>
-                </ul>
+<header id="header">
+    <div class="head">
+        <div class="logo">
+            <h1>중고동산</h1>
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="검색...">
             </div>
         </div>
-    </header>
-    <div class="wrap">
-        <div class="product">
-            <div class="product_exp">
-                <img src="" alt="상품">
-                <ul class="product_more">
-                    <li>
-                        <h3>판매자 :</h3>
-                    </li>
-                    <li>
-                        <h3>상품명 :</h3>
-                    </li>
-                    <li>
-                        <h3>설명</h3>
-                        <textarea style="box-sizing: border-box; padding: 15px; resize: none; height: 200px;"></textarea>
-                    </li>
-                </ul>
-                <div class="reply">
-                    <form method="post" action="">
-                        <div class="reply_action">
-                            <input type="text" placeholder="문의를 남겨주세요...">
-                            <button type="button">문의하기</button>
-                        </div>
-                    </form>
+        <div class="member">
+            <ul>
+                <li>
+                    <a href="#n">로그인</a>
+                </li>
+                <li>
+                    <a href="#n">회원가입</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="wrap">
+    <div class="product">
+        <div class="product_exp">
+            <img src="" alt="상품">
+            <ul class="product_more">
+                <li>
+                    <h3>판매자 : </h3>
+                </li>
+                <li>
+                    <h3>상품명 : </h3>
+                </li>
+                <li>
+                    <h3>설명 : </h3>
+                </li>
+            </ul>
+            <div id="reply">
+                <div class="rep_input">
+                    <input id="comment" placeholder="문의를 남겨주세요...">
+                    <button onclick="postComment()">문의하기</button>
                 </div>
+            </div>
+            <div class="comment_list">
+                <h2>댓글</h2>
             </div>
         </div>
     </div>
-    <footer style="height: 100px; background: #33dac6;">
-        <div class="foot">
-            <i class="fa-regular fa-copyright"></i>
-            <p>2022, 중고동산 by Team 6, ALL RIGHTS RESERVED.</p>
-        </div>
-    </footer>
+</div>
+<footer style="height: 100px; background: #33dac6;">
+    <div class="foot">
+        <i class="fa-regular fa-copyright"></i>
+        <p>2022, 중고동산 by Team 6, ALL RIGHTS RESERVED.</p>
+    </div>
+</footer>
 </body>
 
 </html>
