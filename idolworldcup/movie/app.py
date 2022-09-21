@@ -19,11 +19,6 @@ def home():
 def login():
     return render_template('index4.html')
 
-@app.route('/sign_up')
-def sign_up():
-    return render_template('index5.html')
-
-
 @app.route("/products", methods=["POST"])
 def list_post():
     name_receive = request.form['name_give']
