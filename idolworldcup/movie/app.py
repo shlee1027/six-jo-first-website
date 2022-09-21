@@ -23,6 +23,8 @@ def home():
 def login():
     return render_template('index4.html')
 
+
+
 @app.route("/products", methods=["POST"])
 def list_post():
     name_receive = request.form['name_give']
@@ -79,5 +81,5 @@ def list_get():
 
 
 
-    if __name__ == '__main__':
-        app.run('0.0.0.0', port=5000, debug=True)
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=5000, debug=True)
