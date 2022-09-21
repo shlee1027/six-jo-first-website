@@ -26,7 +26,7 @@
         });
 
          function listing() {
-            let img = "url(https://m.thetem.co.kr/web/product/medium/201907/a1da0b72afb4e09718299a79a1df67a9.jpg)"
+
              $.ajax({
                 type: 'GET',
                 url: '/products',
@@ -36,13 +36,13 @@
                     for (i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let product = rows[i]['product']
-
+                        let img = rows[i]['img']
                         let desc = rows[i]['desc']
                         let price = rows[i]['price']
 
                         let temp_html = `<div class="col">
                                         <div class="card h-100">
-                                            <img src=${img}
+                                            <img src="${img}"
                                                  class="card-img-top">
                                             <div class="card-body">
                                                 <h5 class="card-title">${product}</h5>
@@ -61,14 +61,14 @@
         function posting() {
             let name = $('#name').val()
             let product = $('#product').val()
-//이미지 들어갈 곳
+            let img = $('#img').val()
             let desc = $('#desc').val()
             let price = $('#price').val()
 
             $.ajax({
                 type: 'POST',
                 url: '/products',
-                data: {name_give: name, product_give: product, desc_give:desc, price_give:price},
+                data: {name_give: name, product_give: product, img_give:img,desc_give:desc, price_give:price},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
@@ -116,11 +116,9 @@
             <input id="product" type="text" class="form-control" placeholder="name@example.com">
             <label>상품명</label>
         </div>
-        <div>
-            <form action = "/fileupload" method = "POST"
-          enctype = "multipart/form-data"/>
-            <input class="image_input" type="file" name="file"/>
-            <input type ="submit"/>
+        <div class="form-floating mb-3">
+            <input id="img" type="text" class="form-control" placeholder="name@example.com">
+            <label>상품이미지url</label>
         </div>
         <div class="form-floating mb-3">
             <input id="desc" type="text" class="form-control" placeholder="name@example.com">
