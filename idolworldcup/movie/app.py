@@ -10,6 +10,10 @@ db = client.dbsparta
 
 import os
 from werkzeug.utils import secure_filename
+#
+# from daytime import timedelta
+# timedelta(days=5, hours=17, minutes=30)
+# datetime.timedelta(days=5, seconds=63000)
 
 @app.route('/')
 def home():
@@ -27,10 +31,38 @@ def list_post():
     desc_receive = request.form['desc_give']
     price_receive = request.form['price_give']
 
+
+
+    # 현재시간
+    # today = datetime.now()
+    # my_time = today.strftime('%Y-%m-%d-%H-%M-%S')
+    # 확장자
+
+    # 확장자에 따라 올릴 수 있는 파일을 제한하여 오류 메세지를 전송합니다.
+    # 프론트로 대륙 선택을 하지 않았을 경우에도 오류메세지를 전송합니다.
+    # white_list = ['JPG', 'jpg', 'gif', 'png', 'PNG', 'webp']
+    if request.method == "POST":
+        f = request.files['file']
+    extension = f.filename.split('.')[-1]
+    f.save(secure_filename(f.filename))
+    # save_to = f'static/img/{filename}.{extension}'
+    # if extension not in white_list:
+    #     return jsonify({'result': 'fail', 'msg': '올바른 파일 형식이 아닙니다!'})
+    print(f)
+    # print(save_to)
+    print(os.getcwd())
+    # f.save(save_to)
+
+    # image_path = './new'
+    # filename = secure_filename(file.filename)
+    # os.makedirs(image_path, exists_ok=True)
+    # file.save(os.path.join(image_path, filename))
+
+
     doc = {
         'name': name_receive,
         'product': product_receive,
-
+        # 'img_url': f'{filename}.{extension}',
         'desc': desc_receive,
         'price': price_receive
     }
@@ -44,15 +76,8 @@ def list_get():
     return jsonify({'products': products_list})
 
 
-@app.route('/fileupload', methods=['POST'])
-def file_upload():
-    file = request.files['file']
-    image_path = './new'
-    filename = secure_filename(file.filename)
-    os.makedirs(image_path, exists_ok=True)
-    file.save(os.path.join(image_path, filename))
 
-    return
 
-if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+
+    if __name__ == '__main__':
+        app.run('0.0.0.0', port=5000, debug=True)
