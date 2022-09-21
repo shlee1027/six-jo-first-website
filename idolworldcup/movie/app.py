@@ -22,7 +22,10 @@ db = client.dbsparta
 
 @app.route('/')
 def tohome():
-    return render_template('index.html')
+    r = requests.get('http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99')
+    response = r.json()
+    rows = response['RealtimeCityAir']['row']
+    return render_template('index.html', rows=rows)
 
 @app.route('/login')
 def tologin():

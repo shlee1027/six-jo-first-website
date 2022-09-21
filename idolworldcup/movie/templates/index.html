@@ -89,6 +89,15 @@
 
 <body>
     <header id="header">
+        <div class="dust">
+            {% for row in rows %}
+            {% set gu_name = row.MSRSTE_NM %}
+            {% set gu_mise = row.IDEX_MVL %}
+            {% if gu_mise >= 100 %}
+            <li>{{ gu_name }}: {{ gu_mise }}</li>
+            {% endif %}
+            {% endfor %}
+        </div>
         <div class="head">
             <div class="logo">
                 <h1>중고동산</h1>
@@ -97,11 +106,13 @@
                     <input type="text" placeholder="검색...">
                 </div>
             </div>
+
             <div class="member">
                 <ul>
+
                     <li>
                         <a href="/login">로그인/회원가입</a>
-                        <a href="/home">홈</a>
+                        <a href="/">홈</a>
                     </li>
                 </ul>
             </div>
