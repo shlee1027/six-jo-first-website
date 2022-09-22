@@ -29,13 +29,13 @@ def tohome():
 
 @app.route('/login')
 def tologin():
-    return render_template('index4.html')
+    return render_template('login.html')
 
 @app.route('/detail')
 def detail():
     id = request.args.get("id")
     appendix = db.products.find_one({"_id": ObjectId(id)}, {"_id": False})
-    return render_template('index2.html', appendix=appendix)
+    return render_template('detail.html', appendix=appendix)
 
 
 @app.route("/products", methods=["POST"])
@@ -87,7 +87,7 @@ def home():
 @app.route('/login')
 def login():
     msg = request.args.get("msg")
-    return render_template('index4.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 
 @app.route('/sign_in', methods=['POST'])
@@ -104,9 +104,9 @@ def sign_in():
     if result is not None:
         payload = {
          'id': username_receive,
-         'exp': datetime.datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
@@ -141,7 +141,7 @@ def check_dup():
 def posting():
     token_receive = request.cookies.get('mytoken')
     try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256']).decode('utf-8')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         # 포스팅하기
         return jsonify({"result": "success", 'msg': '포스팅 성공'})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
@@ -163,4 +163,4 @@ def get_posts():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=4000, debug=True)
