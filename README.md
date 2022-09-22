@@ -19,18 +19,8 @@
 <code>
 /static
   └──/css
-     ├── /login.css
-     ├── /main.css
-     ├── /header.css
-     ├── /footer.css
-     ├── /reset.css
-     ├── /join_membership
-     ├── /postview.css
-     ├── /writing.css
-     └── /postlist.css
-  └──/img
-     ├── /logo.png
-     └── /banner.png
+     ├── /style.css
+     └── favicon.io
   └──/js
      ├── /join_membership.js
      ├── /layout_postlist.js
