@@ -20,26 +20,16 @@
 /static
   └──/css
      ├── /style.css
-     └── favicon.io
-  └──/js
-     ├── /join_membership.js
-     ├── /layout_postlist.js
-     ├── /layout_postview.js
-     ├── /layout_writing.js
-     └── /login.js
 /templates
   └──/layout_section
-     ├── /header.html
-     └── /footer.html
-  ├── /layout.html
-  ├── /join_membership.html
-  ├── /layout_postlist.html
-  ├── /layout_postview.html
-  ├── /layout_writing.html
-  └── /login.html
-
+     ├── /detail.html
+     └── /index.html
+     └── /login.html
+  ├── /app.py
+  ├── /login.py
+  ├── /productList.py
+  └── /reply.py
 ├── /README.md
-├── /app.py
 </code>
 </pre>
 <br>
