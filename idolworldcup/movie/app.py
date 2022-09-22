@@ -40,7 +40,11 @@ def list_post():
     desc_receive = request.form['desc_give']
     price_receive = request.form['price_give']
 
+    product_list = list(db.products.find({}, {'_id': False}))
+    count = len(product_list) + 1
+
     doc = {
+        'count':count,
         'name': name_receive,
         'product': product_receive,
         'img': img_receive,
