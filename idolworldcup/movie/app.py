@@ -71,7 +71,7 @@ def list_get():
         products_list[i]['_id'] = str(products_list[i]['_id'])
     return jsonify({'products': products_list})
 
-@app.route('/A')
+@app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -84,7 +84,7 @@ def home():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route('/loginA')
+@app.route('/login')
 def login():
     msg = request.args.get("msg")
     return render_template('index4.html', msg=msg)
