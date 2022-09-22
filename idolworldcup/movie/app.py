@@ -21,11 +21,18 @@ db = client.dbsparta
 
 @app.route('/')
 def tohome():
-    return render_template('index.html')
+    r = requests.get('http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99')
+    response = r.json()
+    rows = response['RealtimeCityAir']['row']
+    return render_template('index.html', rows=rows)
 
 @app.route('/login')
 def tologin():
     return render_template('index4.html')
+
+@app.route('/detail')
+def detail():
+    return render_template('index2.html')
 
 
 @app.route("/products", methods=["POST"])
@@ -36,12 +43,19 @@ def list_post():
     desc_receive = request.form['desc_give']
     price_receive = request.form['price_give']
 
+    product_list = list(db.products.find({}, {'_id': False}))
+    count = len(product_list) + 1
+
+    now = datetime.today()
+
     doc = {
+        'count': count,
         'name': name_receive,
         'product': product_receive,
         'img': img_receive,
         'desc': desc_receive,
-        'price': price_receive
+        'price': price_receive,
+        'register_date': now
     }
     db.products.insert_one(doc)
 
@@ -52,7 +66,7 @@ def list_get():
     products_list = list(db.products.find({}, {'_id': False}))
     return jsonify({'products': products_list})
 
-@app.route('/')
+@app.route('/A')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -65,7 +79,7 @@ def home():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route('/login')
+@app.route('/loginA')
 def login():
     msg = request.args.get("msg")
     return render_template('index4.html', msg=msg)
@@ -139,7 +153,24 @@ def get_posts():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
+@app.route('/question', methods=['POST'])
+def save_comment():
+    comment_receive = request.form['comment_give']
 
+    comment_list = {
+        'comment': comment_receive,
+        'comment_date': '2022-09-20'
+    }
+
+    db.comment.insert_one(comment_list)
+
+    return jsonify({'msg': '문의 완료!'})
+
+
+@app.route('/question', methods=['GET'])
+def comment_get():
+    reply_list = list(db.comment.find({}, {'_id':False}))
+    return jsonify({'replys': reply_list})
 
 
 
