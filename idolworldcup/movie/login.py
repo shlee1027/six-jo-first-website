@@ -37,7 +37,7 @@ def home():
 @app.route('/login')
 def login():
     msg = request.args.get("msg")
-    return render_template('index4.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 
 @app.route('/sign_in', methods=['POST'])
