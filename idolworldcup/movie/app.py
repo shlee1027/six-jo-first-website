@@ -30,10 +30,12 @@ def tohome():
 def tologin():
     return render_template('index4.html')
 
-@app.route('/detail')
-def detail():
-    return render_template('index2.html')
-
+@app.route('/detail/<img>')
+def detail(img):
+    name = request.args.get("img")
+    appendix = db.products.find_one({"img": img}, {"_id":False})
+    return render_template('index2.html', appendix=appendix)
+    print(appendix)
 
 @app.route("/products", methods=["POST"])
 def list_post():

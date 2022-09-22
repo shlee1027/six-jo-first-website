@@ -40,9 +40,10 @@
                         let desc = rows[i]['desc']
                         let price = rows[i]['price']
 
+
                         let temp_html = `<div class="col">
                                         <div class="card h-100">
-                                           <a href="/detail">
+                                           <a href="/detail?id="${img}">
                                            <img src="${img}"
                                                  class="card-img-top">
                                            </a>
@@ -51,6 +52,7 @@
                                                 <p class="card-text">${desc}</p>
                                                 <p>${name}</p>
                                                 <p class="mycomment">${price}</p>
+
                                             </div>
                                         </div>
                                     </div>`
