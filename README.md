@@ -12,3 +12,47 @@
 <h3><b>🎞 프로젝트 시연영상 🎞</b></h3>
 
 ---
+
+<br>
+<h3 align="center"><b>📂 Project Directory Structure 📁</b></h3>
+<pre>
+<code>
+/static
+  └──/css
+     ├── /login.css
+     ├── /main.css
+     ├── /header.css
+     ├── /footer.css
+     ├── /reset.css
+     ├── /join_membership
+     ├── /postview.css
+     ├── /writing.css
+     └── /postlist.css
+  └──/img
+     ├── /logo.png
+     └── /banner.png
+  └──/js
+     ├── /join_membership.js
+     ├── /layout_postlist.js
+     ├── /layout_postview.js
+     ├── /layout_writing.js
+     └── /login.js
+/templates
+  └──/layout_section
+     ├── /header.html
+     └── /footer.html
+  ├── /layout.html
+  ├── /join_membership.html
+  ├── /layout_postlist.html
+  ├── /layout_postview.html
+  ├── /layout_writing.html
+  └── /login.html
+
+├── /README.md
+├── /app.py
+</code>
+</pre>
+<br>
+
+---
+
