@@ -1,4 +1,4 @@
-<h3 align="center"><b>Chapter1_E반_6조, 미니프로젝트, 중고동산(Pre-owned hill)</b></h3>
+<h3 align="center"><b>Chapter1_E반_6조, 미니프로젝트, 중고동산(Pre-owned Hill)</b></h3>
 
 <h4 align="center">📆 2022.09.19 ~ 2022.09.22</h4>
 <br>
