@@ -6,6 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
-    <option name="TEMPLATE_CONFIGURATION" value="Chameleon" />
+    <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
   </component>
 </module>
