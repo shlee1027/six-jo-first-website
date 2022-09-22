@@ -1,8 +1,8 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
-from datetime import datetime, timedelta
+from datetime import datetime
+from datetime import timedelta
 import jwt
-import datetime
 import hashlib
 
 app = Flask(__name__)
@@ -19,13 +19,9 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.rblxfs7.mongodb.net/?re
 db = client.dbsparta
 
 
-
 @app.route('/')
 def tohome():
-    r = requests.get('http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99')
-    response = r.json()
-    rows = response['RealtimeCityAir']['row']
-    return render_template('index.html', rows=rows)
+    return render_template('index.html')
 
 @app.route('/login')
 def tologin():
@@ -40,13 +36,15 @@ def list_post():
     desc_receive = request.form['desc_give']
     price_receive = request.form['price_give']
 
+<<<<<<< HEAD
     product_list = list(db.products.find({}, {'_id': False}))
     count = len(product_list) + 1
 
 
 
+=======
+>>>>>>> 48afd761b49c0cbb9e833882df235db9cf00a22a
     doc = {
-        'count':count,
         'name': name_receive,
         'product': product_receive,
         'img': img_receive,
@@ -63,7 +61,7 @@ def list_get():
     products_list = list(db.products.find({}, {'_id': False}))
     return jsonify({'products': products_list})
 
-@app.route('/A')
+@app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -76,7 +74,7 @@ def home():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route('/loginA')
+@app.route('/login')
 def login():
     msg = request.args.get("msg")
     return render_template('index4.html', msg=msg)
@@ -91,12 +89,14 @@ def sign_in():
     pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     result = db.users.find_one({'username': username_receive, 'password': pw_hash})
 
+
+
     if result is not None:
         payload = {
          'id': username_receive,
          'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
