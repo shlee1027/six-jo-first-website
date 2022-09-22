@@ -86,6 +86,22 @@
             $('#post-box').hide()
 
         }
+
+     function search() {
+         let search = $("#input-word").val()
+         let regex = / /gi;
+         search.replace(regex, '');
+         console.log(search)
+         if (search == "") {
+             // 빈 문자열이면 얼럿
+             alert("앗! 아직 입력하지 않았어요~!")
+             return
+         } else {
+             // 리스트에 없으면 물건을 못찾겠습니다라고 뜨게 한다
+             alert("물건을 못 찾겠습니다.")
+             return
+         }
+     }
     </script>
 </head>
 
@@ -107,9 +123,11 @@
             <div class="logo">
                 <a class="main_logo" href="/"><h1>중고동산</h1></a>
                 <div class="search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="검색...">
-                </div>
+                    <div class="search-box">
+                        <input type="search" id="input-word" placeholder="품목명을 입력하세요." required>
+                        <button id="serch_button" class="btn btn-light" onclick="search()"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
             </div>
             <div class="member">
                 <ul>
