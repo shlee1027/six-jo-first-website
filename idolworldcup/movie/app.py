@@ -19,15 +19,14 @@ from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.rblxfs7.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
-
-@app.route('/')
+@app.route('/A')
 def tohome():
     r = requests.get('http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99')
     response = r.json()
     rows = response['RealtimeCityAir']['row']
     return render_template('index.html', rows=rows)
 
-@app.route('/login')
+@app.route('/loginA')
 def tologin():
     return render_template('index4.html')
 
@@ -71,7 +70,7 @@ def list_get():
         products_list[i]['_id'] = str(products_list[i]['_id'])
     return jsonify({'products': products_list})
 
-@app.route('/A')
+@app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -84,7 +83,7 @@ def home():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route('/loginA')
+@app.route('/login')
 def login():
     msg = request.args.get("msg")
     return render_template('index4.html', msg=msg)
@@ -104,9 +103,9 @@ def sign_in():
     if result is not None:
         payload = {
          'id': username_receive,
-         'exp': datetime.datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
@@ -141,7 +140,7 @@ def check_dup():
 def posting():
     token_receive = request.cookies.get('mytoken')
     try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256']).decode('utf-8')
         # 포스팅하기
         return jsonify({"result": "success", 'msg': '포스팅 성공'})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
@@ -163,4 +162,4 @@ def get_posts():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=4000, debug=True)
