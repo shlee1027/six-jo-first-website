@@ -21,7 +21,6 @@
   └──/css
      ├── /style.css
 /templates
-  └──/layout_section
      ├── /detail.html
      └── /index.html
      └── /login.html
