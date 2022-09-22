@@ -46,10 +46,12 @@
                         let img = rows[i]['img']
                         let desc = rows[i]['desc']
                         let price = rows[i]['price']
+                        let id = rows[i]['_id']
+
 
                         let temp_html = `<div class="col">
                                         <div class="card h-100">
-                                           <a href="/detail">
+                                           <a href="/detail?id=${id}">
                                            <img src="${img}"
                                                  class="card-img-top">
                                            </a>
@@ -58,6 +60,7 @@
                                                 <p class="card-text">${desc}</p>
                                                 <p>${name}</p>
                                                 <p class="mycomment">${price}</p>
+
                                             </div>
                                         </div>
                                     </div>`
@@ -94,6 +97,29 @@
 
         }
 
+<<<<<<< HEAD
+     function search() {
+         let search = $("#input-word").val()
+         let regex = / /gi;
+         search.replace(regex, '');
+         console.log(search)
+         if (search == "") {
+             // 빈 문자열이면 얼럿
+             alert("앗! 아직 입력하지 않았어요~!")
+             return
+         } else {
+             // 리스트에 없으면 물건을 못찾겠습니다라고 뜨게 한다
+             alert("물건을 못 찾겠습니다.")
+             return
+         }
+     }
+=======
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/"
+        }
+>>>>>>> origin/minjae
         function sign_out() {
             $.removeCookie('mytoken', {path: '/'});
             alert('로그아웃!')
@@ -120,9 +146,11 @@
             <div class="logo">
                 <a class="main_logo" href="/"><h1>중고동산</h1></a>
                 <div class="search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="검색...">
-                </div>
+                    <div class="search-box">
+                        <input type="search" id="input-word" placeholder="품목명을 입력하세요." required>
+                        <button id="serch_button" class="btn btn-light" onclick="search()"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
             </div>
             <div class="member">
                 <ul>
