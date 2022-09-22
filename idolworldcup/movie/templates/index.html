@@ -39,11 +39,12 @@
                         let img = rows[i]['img']
                         let desc = rows[i]['desc']
                         let price = rows[i]['price']
+                        let id = rows[i]['_id']
 
 
                         let temp_html = `<div class="col">
                                         <div class="card h-100">
-                                           <a href="/detail?id="${img}">
+                                           <a href="/detail?id=${id}">
                                            <img src="${img}"
                                                  class="card-img-top">
                                            </a>

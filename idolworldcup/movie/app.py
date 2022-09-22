@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime
 from datetime import timedelta
+from bson.objectid import ObjectId
 import jwt
 import hashlib
 
@@ -30,12 +31,12 @@ def tohome():
 def tologin():
     return render_template('index4.html')
 
-@app.route('/detail/<img>')
-def detail(img):
-    name = request.args.get("img")
-    appendix = db.products.find_one({"img": img}, {"_id":False})
+@app.route('/detail')
+def detail():
+    id = request.args.get("id")
+    appendix = db.products.find_one({"_id": ObjectId(id)}, {"_id": False})
     return render_template('index2.html', appendix=appendix)
-    print(appendix)
+
 
 @app.route("/products", methods=["POST"])
 def list_post():
@@ -65,7 +66,9 @@ def list_post():
 
 @app.route("/products", methods=["GET"])
 def list_get():
-    products_list = list(db.products.find({}, {'_id': False}))
+    products_list = list(db.products.find({}))
+    for i in range(len(products_list)):
+        products_list[i]['_id'] = str(products_list[i]['_id'])
     return jsonify({'products': products_list})
 
 @app.route('/A')
