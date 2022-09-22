@@ -1,8 +1,8 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
-from datetime import datetime, timedelta
+from datetime import datetime
+from datetime import timedelta
 import jwt
-import datetime
 import hashlib
 
 app = Flask(__name__)
@@ -17,7 +17,6 @@ from bs4 import BeautifulSoup
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.rblxfs7.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
-
 
 
 @app.route('/')
@@ -81,12 +80,14 @@ def sign_in():
     pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     result = db.users.find_one({'username': username_receive, 'password': pw_hash})
 
+
+
     if result is not None:
         payload = {
          'id': username_receive,
          'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
