@@ -21,7 +21,10 @@ db = client.dbsparta
 
 @app.route('/')
 def tohome():
-    return render_template('index.html')
+    r = requests.get('http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99')
+    response = r.json()
+    rows = response['RealtimeCityAir']['row']
+    return render_template('index.html', rows=rows)
 
 @app.route('/login')
 def tologin():
@@ -42,8 +45,7 @@ def list_post():
     now = datetime.today()
 
     doc = {
-
-        'count':count,
+        'count': count,
         'name': name_receive,
         'product': product_receive,
         'img': img_receive,
@@ -60,7 +62,7 @@ def list_get():
     products_list = list(db.products.find({}, {'_id': False}))
     return jsonify({'products': products_list})
 
-@app.route('/')
+@app.route('/A')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -73,7 +75,7 @@ def home():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route('/login')
+@app.route('/loginA')
 def login():
     msg = request.args.get("msg")
     return render_template('index4.html', msg=msg)
