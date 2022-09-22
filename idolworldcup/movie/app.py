@@ -27,6 +27,10 @@ def tohome():
 def tologin():
     return render_template('index4.html')
 
+@app.route('/detail')
+def detail():
+    return render_template('index2.html')
+
 
 @app.route("/products", methods=["POST"])
 def list_post():
@@ -93,7 +97,7 @@ def sign_in():
     if result is not None:
         payload = {
          'id': username_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+         'exp': datetime.datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
