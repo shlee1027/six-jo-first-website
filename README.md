@@ -10,6 +10,7 @@
 <br><br>
 
 <h3><b>🎞 프로젝트 시연영상 🎞</b></h3>
+https://youtu.be/oB7yCma4XvE
 
 ---
 
