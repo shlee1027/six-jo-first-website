@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime
 from datetime import timedelta
+from bson.objectid import ObjectId
 import jwt
 import hashlib
 
@@ -18,20 +19,23 @@ from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.rblxfs7.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
-@app.route('/A')
+
+@app.route('/')
 def tohome():
     r = requests.get('http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99')
     response = r.json()
     rows = response['RealtimeCityAir']['row']
     return render_template('index.html', rows=rows)
 
-@app.route('/loginA')
+@app.route('/login')
 def tologin():
-    return render_template('login.html')
+    return render_template('index4.html')
 
 @app.route('/detail')
 def detail():
-    return render_template('detail.html')
+    id = request.args.get("id")
+    appendix = db.products.find_one({"_id": ObjectId(id)}, {"_id": False})
+    return render_template('index2.html', appendix=appendix)
 
 
 @app.route("/products", methods=["POST"])
@@ -62,10 +66,12 @@ def list_post():
 
 @app.route("/products", methods=["GET"])
 def list_get():
-    products_list = list(db.products.find({}, {'_id': False}))
+    products_list = list(db.products.find({}))
+    for i in range(len(products_list)):
+        products_list[i]['_id'] = str(products_list[i]['_id'])
     return jsonify({'products': products_list})
 
-@app.route('/')
+@app.route('/A')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -78,10 +84,10 @@ def home():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
-@app.route('/login')
+@app.route('/loginA')
 def login():
     msg = request.args.get("msg")
-    return render_template('login.html', msg=msg)
+    return render_template('index4.html', msg=msg)
 
 
 @app.route('/sign_in', methods=['POST'])
@@ -98,9 +104,9 @@ def sign_in():
     if result is not None:
         payload = {
          'id': username_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+         'exp': datetime.datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
@@ -157,4 +163,4 @@ def get_posts():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=4000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
