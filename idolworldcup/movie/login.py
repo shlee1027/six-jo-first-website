@@ -77,6 +77,8 @@ def sign_up():
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
 
+function sign_out() { $.removeCookie('mytoken', {path: '/'}); alert('로그아웃!') window.location.href = '/login'  }
+
 @app.route('/sign_up/check_dup', methods=['POST'])
 def check_dup():
     username_receive = request.form['username_give']

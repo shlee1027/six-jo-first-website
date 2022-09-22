@@ -5,15 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+          integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="../static/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link href="stylesheet" href="../static/style.css">
 
     <link rel="stylesheet" href = "../static/style.css">
 
@@ -21,6 +27,7 @@
 
 
     <script>
+
      $(document).ready(function () {
             listing();
         });
@@ -86,6 +93,12 @@
             $('#post-box').hide()
 
         }
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/"
+        }
     </script>
 </head>
 
@@ -114,8 +127,15 @@
             <div class="member">
                 <ul>
                     <li>
-                        <a href="/login">로그인/회원가입</a>
-                        <a href="/">홈</a>
+                        {% if status %}
+                        <a href="/loginA">로그인/회원가입</a>
+                        {% endif %}
+                        <a class="button level-item has-text-centered is-sparta is-outlined" aria-label="logout"
+                           onclick="sign_out()">
+                            로그아웃&nbsp;&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-sign-out"
+                                                                                 aria-hidden="true"></i></span>
+                        </a>
+                        <a href="/A">홈</a>
                     </li>
                 </ul>
             </div>
@@ -152,9 +172,11 @@
 
         </div> -->
     </div>
-    <div onclick="open_box()" class="sidebox" id="sidebox">
+   {% if status %}
+     <div onclick="open_box()" class="sidebox" id="sidebox">
     물품 추가하기
-    </div>
+     </div>
+    {% endif %}
 
     <footer style="height: 100px; background: #33dac6;">
         <div class="foot">
