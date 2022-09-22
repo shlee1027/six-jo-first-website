@@ -43,13 +43,16 @@ def list_post():
     product_list = list(db.products.find({}, {'_id': False}))
     count = len(product_list) + 1
 
+
+
     doc = {
         'count':count,
         'name': name_receive,
         'product': product_receive,
         'img': img_receive,
         'desc': desc_receive,
-        'price': price_receive
+        'price': price_receive,
+
     }
     db.products.insert_one(doc)
 
